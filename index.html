@@ -728,7 +728,7 @@ function updateSplashPosition(xPercent) {
 }
 
 // Desktop: mouse-follow
-const isMobile = window.matchMedia('(max-width: 768px)').matches;
+const isMobile = window.matchMedia('(pointer: coarse)').matches;
 
 if (!isMobile) {
   document.addEventListener('mousemove', (e) => {
@@ -761,26 +761,37 @@ if (!isMobile) {
     let progress = 0;
 
     if (isLast) {
-      // Fade out the last image in place, then reposition and fade in the first
+      // Disable CSS transitions during wrap
+      splashImgEls[prevIdx].style.transition = 'none';
+      splashImgEls[autoIdx].style.transition = 'none';
+
+      // Step 1: Fade out the last image in place
       const fadeOut = () => {
         progress += 0.03;
         if (progress >= 1) progress = 1;
         splashImgEls[prevIdx].style.opacity = String(0.4 * (1 - progress));
         if (progress < 1) { requestAnimationFrame(fadeOut); return; }
-        // Switch to first image at its left position while invisible
+
+        // Fully hidden — now reposition to first image
+        splashImgEls[prevIdx].style.opacity = '0';
         splashImgEls[prevIdx].classList.remove('active');
-        splashImgEls[prevIdx].style.opacity = '';
         activeImgIdx = autoIdx;
         splashImgEls[autoIdx].style.opacity = '0';
         splashImgEls[autoIdx].classList.add('active');
+        // Move container to left position while everything is invisible
         updateSplashPosition(positions[autoIdx]);
-        // Fade in
+
+        // Step 2: Fade in the first image at its left position
         let fadeProgress = 0;
         const fadeIn = () => {
           fadeProgress += 0.03;
           if (fadeProgress >= 1) fadeProgress = 1;
           splashImgEls[autoIdx].style.opacity = String(0.4 * fadeProgress);
           if (fadeProgress < 1) { requestAnimationFrame(fadeIn); return; }
+          // Restore CSS transitions and clean up inline styles
+          splashImgEls[prevIdx].style.transition = '';
+          splashImgEls[prevIdx].style.opacity = '';
+          splashImgEls[autoIdx].style.transition = '';
           splashImgEls[autoIdx].style.opacity = '';
           animating = false;
         };
