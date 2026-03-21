@@ -740,34 +740,40 @@ if (!isMobile) {
     updateSplashPosition(xPercent);
   });
 } else {
-  // Mobile: auto-carousel that drifts images across the screen
-  let autoIdx = centerIdx;
-  let autoDirection = 1;
+  // Mobile: auto-carousel that drifts images left to right, looping
+  let autoIdx = 0;
   const positions = [];
   for (let i = 0; i < splashImgEls.length; i++) {
     positions.push((i + 0.5) / splashImgEls.length);
   }
-  // Start at center
   updateSplashPosition(positions[autoIdx]);
 
   setInterval(() => {
-    autoIdx += autoDirection;
-    if (autoIdx >= splashImgEls.length - 1) autoDirection = -1;
-    if (autoIdx <= 0) autoDirection = 1;
-
-    // Smoothly animate to next position
+    const startPercent = positions[autoIdx];
+    autoIdx = (autoIdx + 1) % splashImgEls.length;
     const target = positions[autoIdx];
-    const current = parseFloat(splashImgContainer.style.left) || 0;
+    // When wrapping from last to first, animate quickly to right edge then jump to left
+    const wrapping = autoIdx === 0;
     let progress = 0;
-    const startPercent = (activeImgIdx + 0.5) / splashImgEls.length;
     const animate = () => {
       progress += 0.02;
       if (progress >= 1) progress = 1;
       const ease = progress < 0.5
         ? 2 * progress * progress
         : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-      const xPercent = startPercent + (target - startPercent) * ease;
-      updateSplashPosition(xPercent);
+      if (wrapping) {
+        // First half: drift to right edge, second half: appear from left
+        if (ease < 0.5) {
+          const xPercent = startPercent + (1 - startPercent) * (ease * 2);
+          updateSplashPosition(xPercent);
+        } else {
+          const xPercent = (ease - 0.5) * 2 * positions[0];
+          updateSplashPosition(xPercent);
+        }
+      } else {
+        const xPercent = startPercent + (target - startPercent) * ease;
+        updateSplashPosition(xPercent);
+      }
       if (progress < 1) requestAnimationFrame(animate);
     };
     requestAnimationFrame(animate);
