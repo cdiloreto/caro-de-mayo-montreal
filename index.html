@@ -748,42 +748,62 @@ if (!isMobile) {
   }
   updateSplashPosition(positions[autoIdx]);
 
-  setInterval(() => {
+  let animating = false;
+
+  function stepCarousel() {
+    if (animating) return;
+    animating = true;
     const startPercent = positions[autoIdx];
     const prevIdx = autoIdx;
     autoIdx = (autoIdx + 1) % splashImgEls.length;
-    const wrapping = autoIdx === 0;
+    const isLast = autoIdx === 0;
     const target = positions[autoIdx];
     let progress = 0;
 
-    const animate = () => {
-      progress += 0.02;
-      if (progress >= 1) progress = 1;
-      const ease = progress < 0.5
-        ? 2 * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-      if (wrapping) {
-        // Simple cross-fade in center position
-        splashImgEls[prevIdx].style.opacity = String(0.4 * (1 - ease));
-        splashImgEls[autoIdx].style.opacity = String(0.4 * ease);
-
-        if (progress >= 1) {
-          splashImgEls[prevIdx].classList.remove('active');
-          splashImgEls[prevIdx].style.opacity = '';
+    if (isLast) {
+      // Fade out the last image in place, then reposition and fade in the first
+      const fadeOut = () => {
+        progress += 0.03;
+        if (progress >= 1) progress = 1;
+        splashImgEls[prevIdx].style.opacity = String(0.4 * (1 - progress));
+        if (progress < 1) { requestAnimationFrame(fadeOut); return; }
+        // Switch to first image at its left position while invisible
+        splashImgEls[prevIdx].classList.remove('active');
+        splashImgEls[prevIdx].style.opacity = '';
+        activeImgIdx = autoIdx;
+        splashImgEls[autoIdx].style.opacity = '0';
+        splashImgEls[autoIdx].classList.add('active');
+        updateSplashPosition(positions[autoIdx]);
+        // Fade in
+        let fadeProgress = 0;
+        const fadeIn = () => {
+          fadeProgress += 0.03;
+          if (fadeProgress >= 1) fadeProgress = 1;
+          splashImgEls[autoIdx].style.opacity = String(0.4 * fadeProgress);
+          if (fadeProgress < 1) { requestAnimationFrame(fadeIn); return; }
           splashImgEls[autoIdx].style.opacity = '';
-          activeImgIdx = autoIdx;
-          splashImgEls[autoIdx].classList.add('active');
-          updateSplashPosition(positions[autoIdx]);
-        }
-      } else {
+          animating = false;
+        };
+        requestAnimationFrame(fadeIn);
+      };
+      requestAnimationFrame(fadeOut);
+    } else {
+      const animate = () => {
+        progress += 0.02;
+        if (progress >= 1) progress = 1;
+        const ease = progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
         const xPercent = startPercent + (target - startPercent) * ease;
         updateSplashPosition(xPercent);
-      }
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-    requestAnimationFrame(animate);
-  }, 2000);
+        if (progress < 1) { requestAnimationFrame(animate); return; }
+        animating = false;
+      };
+      requestAnimationFrame(animate);
+    }
+  }
+
+  setInterval(stepCarousel, 2000);
 }
 
 // Smoothly decay rotation back to 0 when mouse stops
