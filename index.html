@@ -776,19 +776,26 @@ function enableTiltTracking() {
 
 // Try enabling tilt — iOS needs user gesture for permission
 if (hasPermissionFn) {
-  const requestTilt = () => {
+  // iOS: use click event (reliable user gesture) on the scroll hint area
+  const scrollHint = document.querySelector('.scroll-hint');
+  const origText = scrollHint.querySelector('span').textContent;
+  scrollHint.querySelector('span').textContent = 'Tap to start';
+  scrollHint.style.cursor = 'pointer';
+
+  scrollHint.addEventListener('click', function requestTilt(evt) {
+    evt.preventDefault();
     dbg.textContent = 'tilt: requesting permission...';
     DeviceOrientationEvent.requestPermission()
       .then(state => {
         dbg.textContent = 'permission: ' + state;
         if (state === 'granted') enableTiltTracking();
+        scrollHint.querySelector('span').textContent = origText;
       })
       .catch((err) => { dbg.textContent = 'permission error: ' + err; });
-  };
-  document.addEventListener('touchstart', requestTilt, { once: true });
+    scrollHint.removeEventListener('click', requestTilt);
+  });
 } else if ('DeviceOrientationEvent' in window) {
   enableTiltTracking();
-  document.addEventListener('touchstart', () => enableTiltTracking(), { once: true });
 }
 
 // Fallback: also try listening immediately in case permission is pre-granted
