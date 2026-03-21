@@ -728,7 +728,7 @@ function updateSplashPosition(xPercent) {
 }
 
 // Desktop: mouse-follow
-const isMobile = window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
 if (!isMobile) {
   document.addEventListener('mousemove', (e) => {
@@ -741,7 +741,7 @@ if (!isMobile) {
   });
 } else {
   // Mobile: auto-carousel that drifts images left to right, looping
-  let autoIdx = 0;
+  let autoIdx = centerIdx;
   const positions = [];
   for (let i = 0; i < splashImgEls.length; i++) {
     positions.push((i + 0.5) / splashImgEls.length);
