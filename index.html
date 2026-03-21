@@ -715,10 +715,14 @@ let currentRotation = 0;
 
 if (splashImgEls.length > 0) splashImgEls[centerIdx].classList.add('active');
 
-function updateSplashPosition(xPercent) {
+function moveSplashTo(xPercent) {
   const offsetX = (xPercent - 0.5) * window.innerWidth * 0.9;
   splashImgContainer.style.left = `calc(50% + ${offsetX}px)`;
   splashImgContainer.style.transform = `translate(-50%, -50%) rotate(${currentRotation}deg)`;
+}
+
+function updateSplashPosition(xPercent) {
+  moveSplashTo(xPercent);
   const newIdx = Math.min(Math.floor(xPercent * splashImgEls.length), splashImgEls.length - 1);
   if (newIdx !== activeImgIdx) {
     splashImgEls[activeImgIdx].classList.remove('active');
@@ -772,14 +776,14 @@ if (!isMobile) {
         splashImgEls[prevIdx].style.opacity = String(0.4 * (1 - progress));
         if (progress < 1) { requestAnimationFrame(fadeOut); return; }
 
-        // Fully hidden — now reposition to first image
+        // Fully hidden — now reposition while invisible
         splashImgEls[prevIdx].style.opacity = '0';
         splashImgEls[prevIdx].classList.remove('active');
         activeImgIdx = autoIdx;
         splashImgEls[autoIdx].style.opacity = '0';
         splashImgEls[autoIdx].classList.add('active');
-        // Move container to left position while everything is invisible
-        updateSplashPosition(positions[autoIdx]);
+        // Move container to left position — nothing visible during this move
+        moveSplashTo(positions[autoIdx]);
 
         // Step 2: Fade in the first image at its left position
         let fadeProgress = 0;
