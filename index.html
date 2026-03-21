@@ -727,84 +727,52 @@ function updateSplashPosition(xPercent) {
   }
 }
 
-document.addEventListener('mousemove', (e) => {
-  const xPercent = e.clientX / window.innerWidth;
-  mouseVelocity = e.clientX - lastMouseX;
-  lastMouseX = e.clientX;
-  const targetRotation = Math.max(-15, Math.min(15, mouseVelocity * 0.5));
-  currentRotation += (targetRotation - currentRotation) * 0.3;
-  updateSplashPosition(xPercent);
-});
+// Desktop: mouse-follow
+const isMobile = window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
 
-// Mobile: touch drag to move image
-document.addEventListener('touchmove', (e) => {
-  const touch = e.touches[0];
-  const xPercent = touch.clientX / window.innerWidth;
-  updateSplashPosition(xPercent);
-}, { passive: true });
-document.addEventListener('touchstart', (e) => {
-  const touch = e.touches[0];
-  const xPercent = touch.clientX / window.innerWidth;
-  updateSplashPosition(xPercent);
-}, { passive: true });
-
-// Mobile: use device tilt (gyroscope) for X-axis positioning
-let tiltActive = false;
-
-// DEBUG: temporary indicator to diagnose tilt issues
-const dbg = document.createElement('div');
-dbg.style.cssText = 'position:fixed;bottom:10px;left:10px;z-index:9999;color:#fff;font:11px monospace;background:rgba(0,0,0,0.6);padding:6px 10px;border-radius:6px;pointer-events:none;';
-dbg.textContent = 'tilt: waiting...';
-document.body.appendChild(dbg);
-
-let hasPermissionFn = typeof DeviceOrientationEvent !== 'undefined' &&
-  typeof DeviceOrientationEvent.requestPermission === 'function';
-dbg.textContent = 'requestPermission: ' + hasPermissionFn;
-
-function enableTiltTracking() {
-  if (tiltActive) return;
-  tiltActive = true;
-  dbg.textContent = 'tilt: listener added';
-  window.addEventListener('deviceorientation', (e) => {
-    dbg.textContent = 'gamma: ' + (e.gamma !== null ? e.gamma.toFixed(1) : 'null');
-    if (e.gamma === null) return;
-    const clampedGamma = Math.max(-45, Math.min(45, e.gamma));
-    const xPercent = (clampedGamma + 45) / 90;
+if (!isMobile) {
+  document.addEventListener('mousemove', (e) => {
+    const xPercent = e.clientX / window.innerWidth;
+    mouseVelocity = e.clientX - lastMouseX;
+    lastMouseX = e.clientX;
+    const targetRotation = Math.max(-15, Math.min(15, mouseVelocity * 0.5));
+    currentRotation += (targetRotation - currentRotation) * 0.3;
     updateSplashPosition(xPercent);
   });
-}
-
-// Try enabling tilt — iOS needs user gesture for permission
-if (hasPermissionFn) {
-  // iOS: use click event (reliable user gesture) on the scroll hint area
-  const scrollHint = document.querySelector('.scroll-hint');
-  const origText = scrollHint.querySelector('span').textContent;
-  scrollHint.querySelector('span').textContent = 'Tap to start';
-  scrollHint.style.cursor = 'pointer';
-
-  scrollHint.addEventListener('click', function requestTilt(evt) {
-    evt.preventDefault();
-    dbg.textContent = 'tilt: requesting permission...';
-    DeviceOrientationEvent.requestPermission()
-      .then(state => {
-        dbg.textContent = 'permission: ' + state;
-        if (state === 'granted') enableTiltTracking();
-        scrollHint.querySelector('span').textContent = origText;
-      })
-      .catch((err) => { dbg.textContent = 'permission error: ' + err; });
-    scrollHint.removeEventListener('click', requestTilt);
-  });
-} else if ('DeviceOrientationEvent' in window) {
-  enableTiltTracking();
-}
-
-// Fallback: also try listening immediately in case permission is pre-granted
-window.addEventListener('deviceorientation', function probe(e) {
-  if (e.gamma !== null) {
-    enableTiltTracking();
-    window.removeEventListener('deviceorientation', probe);
+} else {
+  // Mobile: auto-carousel that drifts images across the screen
+  let autoIdx = centerIdx;
+  let autoDirection = 1;
+  const positions = [];
+  for (let i = 0; i < splashImgEls.length; i++) {
+    positions.push((i + 0.5) / splashImgEls.length);
   }
-});
+  // Start at center
+  updateSplashPosition(positions[autoIdx]);
+
+  setInterval(() => {
+    autoIdx += autoDirection;
+    if (autoIdx >= splashImgEls.length - 1) autoDirection = -1;
+    if (autoIdx <= 0) autoDirection = 1;
+
+    // Smoothly animate to next position
+    const target = positions[autoIdx];
+    const current = parseFloat(splashImgContainer.style.left) || 0;
+    let progress = 0;
+    const startPercent = (activeImgIdx + 0.5) / splashImgEls.length;
+    const animate = () => {
+      progress += 0.02;
+      if (progress >= 1) progress = 1;
+      const ease = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      const xPercent = startPercent + (target - startPercent) * ease;
+      updateSplashPosition(xPercent);
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }, 2500);
+}
 
 // Smoothly decay rotation back to 0 when mouse stops
 setInterval(() => {
