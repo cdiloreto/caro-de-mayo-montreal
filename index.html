@@ -764,21 +764,11 @@ if (!isMobile) {
         : 1 - Math.pow(-2 * progress + 2, 2) / 2;
 
       if (wrapping) {
-        // Cross-fade: old image drifts right and fades out, new image fades in from left
-        const outOffset = (startPercent + (1 - startPercent) * ease - 0.5) * window.innerWidth * 0.9;
-        const inOffset = ((-0.3 + positions[0] * 1.3 * ease) - 0.5) * window.innerWidth * 0.9;
-
-        // Show both images during transition
-        splashImgEls[prevIdx].style.opacity = 0.4 * (1 - ease);
-        splashImgEls[autoIdx].style.opacity = 0.4 * ease;
-
-        // Position follows the outgoing image first half, incoming second half
-        const offset = ease < 0.5 ? outOffset : inOffset;
-        splashImgContainer.style.left = `calc(50% + ${offset}px)`;
-        splashImgContainer.style.transform = `translate(-50%, -50%)`;
+        // Simple cross-fade in center position
+        splashImgEls[prevIdx].style.opacity = String(0.4 * (1 - ease));
+        splashImgEls[autoIdx].style.opacity = String(0.4 * ease);
 
         if (progress >= 1) {
-          // Clean up: set proper state
           splashImgEls[prevIdx].classList.remove('active');
           splashImgEls[prevIdx].style.opacity = '';
           splashImgEls[autoIdx].style.opacity = '';
