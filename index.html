@@ -750,10 +750,23 @@ document.addEventListener('touchstart', (e) => {
 
 // Mobile: use device tilt (gyroscope) for X-axis positioning
 let tiltActive = false;
+
+// DEBUG: temporary indicator to diagnose tilt issues
+const dbg = document.createElement('div');
+dbg.style.cssText = 'position:fixed;bottom:10px;left:10px;z-index:9999;color:#fff;font:11px monospace;background:rgba(0,0,0,0.6);padding:6px 10px;border-radius:6px;pointer-events:none;';
+dbg.textContent = 'tilt: waiting...';
+document.body.appendChild(dbg);
+
+let hasPermissionFn = typeof DeviceOrientationEvent !== 'undefined' &&
+  typeof DeviceOrientationEvent.requestPermission === 'function';
+dbg.textContent = 'requestPermission: ' + hasPermissionFn;
+
 function enableTiltTracking() {
   if (tiltActive) return;
   tiltActive = true;
+  dbg.textContent = 'tilt: listener added';
   window.addEventListener('deviceorientation', (e) => {
+    dbg.textContent = 'gamma: ' + (e.gamma !== null ? e.gamma.toFixed(1) : 'null');
     if (e.gamma === null) return;
     const clampedGamma = Math.max(-45, Math.min(45, e.gamma));
     const xPercent = (clampedGamma + 45) / 90;
@@ -762,18 +775,19 @@ function enableTiltTracking() {
 }
 
 // Try enabling tilt — iOS needs user gesture for permission
-if (typeof DeviceOrientationEvent !== 'undefined' &&
-    typeof DeviceOrientationEvent.requestPermission === 'function') {
+if (hasPermissionFn) {
   const requestTilt = () => {
+    dbg.textContent = 'tilt: requesting permission...';
     DeviceOrientationEvent.requestPermission()
-      .then(state => { if (state === 'granted') enableTiltTracking(); })
-      .catch(() => {});
+      .then(state => {
+        dbg.textContent = 'permission: ' + state;
+        if (state === 'granted') enableTiltTracking();
+      })
+      .catch((err) => { dbg.textContent = 'permission error: ' + err; });
   };
   document.addEventListener('touchstart', requestTilt, { once: true });
 } else if ('DeviceOrientationEvent' in window) {
-  // Android or non-iOS — try enabling directly
   enableTiltTracking();
-  // Also try after a gesture in case it doesn't work immediately
   document.addEventListener('touchstart', () => enableTiltTracking(), { once: true });
 }
 
