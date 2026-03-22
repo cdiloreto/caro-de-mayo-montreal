@@ -23,7 +23,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; background: #D4522A; }
+  html { scroll-behavior: smooth; background: #D4522A; overscroll-behavior: none; }
 
   body {
     font-family: var(--sans);
@@ -312,7 +312,7 @@
     gap: 12px;
   }
   .guest-row:last-child { border-bottom: none; }
-  .guest-name { font-weight: 500; min-width: 110px; }
+  .guest-name { font-weight: 700; min-width: 110px; }
   .guest-times {
     display: flex; gap: 16px; color: var(--text-light);
     font-size: 12px; flex-wrap: wrap; justify-content: flex-end;
@@ -344,7 +344,7 @@
     margin-top: 6px; flex-shrink: 0;
   }
   .event-body { flex: 1; }
-  .event-title { font-size: 14px; font-weight: 500; line-height: 1.5; }
+  .event-title { font-size: 14px; font-weight: 700; line-height: 1.5; }
   .event-detail { font-size: 12px; color: var(--text-mid); margin-top: 3px; line-height: 1.6; }
   .event-detail a {
     color: var(--text-mid); text-decoration: underline;
@@ -411,7 +411,7 @@
     border: 1px solid rgba(43,34,32,0.06);
     border-radius: 10px; padding: 8px 12px; margin-bottom: 6px;
   }
-  .spot-name { font-size: 12px; font-weight: 500; margin-bottom: 2px; }
+  .spot-name { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
   .spot-desc { font-size: 10px; color: var(--text-mid); line-height: 1.5; }
 
   /* ── Checklist (compact) ── */
@@ -440,7 +440,7 @@
     box-shadow: 0 2px 16px rgba(43,34,32,0.06);
   }
   #leaflet-map { height: 420px; width: 100%; }
-  .map-legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--text-mid); }
+  .map-legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: #fff; }
   .legend-item { display: flex; align-items: center; gap: 6px; }
   .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
@@ -491,6 +491,9 @@
   }
   .footer-graphics svg:nth-child(3n) {
     animation-delay: -2.5s;
+  }
+  .footer-graphics {
+    padding-bottom: 5rem;
   }
 
   /* ── Responsive ── */
@@ -783,7 +786,6 @@
   <svg viewBox="0 0 24 24"><defs><linearGradient id="fg4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF69B4"/><stop offset="33%" stop-color="#FF1493"/><stop offset="66%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#00BFFF"/></linearGradient></defs><circle cx="12" cy="8" r="3" fill="url(#fg4)"/><circle cx="8.5" cy="10.5" r="3" fill="url(#fg4)"/><circle cx="15.5" cy="10.5" r="3" fill="url(#fg4)"/><circle cx="9.5" cy="14" r="3" fill="url(#fg4)"/><circle cx="14.5" cy="14" r="3" fill="url(#fg4)"/><circle cx="12" cy="12" r="2.5" fill="#FFD700"/><rect x="11.25" y="14" width="1.5" height="7" rx="0.75" fill="#4CAF50"/></svg>
   <svg viewBox="0 0 24 24"><defs><linearGradient id="fg5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00E640"/><stop offset="50%" stop-color="#00BFFF"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient></defs><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#fg5)"/></svg>
   <svg viewBox="0 0 24 24"><defs><linearGradient id="fg6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF8C00"/><stop offset="50%" stop-color="#FFD700"/><stop offset="100%" stop-color="#00E640"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#fg6)"/></svg>
-  <svg viewBox="0 0 24 24"><defs><linearGradient id="fg7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF1493"/><stop offset="50%" stop-color="#FFD700"/><stop offset="100%" stop-color="#00BFFF"/></linearGradient></defs><path d="M12 11c-1-2-3-4.5-6-4s-4 4-2.5 7c1 2 3.5 4 6 3.5.8-.2 1.5-.5 2-.8l.5 4h2l.5-4c.5.3 1.2.6 2 .8 2.5.5 5-1.5 6-3.5S21 7 18 7s-5 2-6 4z" fill="url(#fg7)"/><line x1="10.5" y1="9.5" x2="8.5" y2="5.5" stroke="url(#fg7)" stroke-width="0.8" stroke-linecap="round"/><line x1="13.5" y1="9.5" x2="15.5" y2="5.5" stroke="url(#fg7)" stroke-width="0.8" stroke-linecap="round"/><circle cx="8.3" cy="5.2" r="0.9" fill="url(#fg7)"/><circle cx="15.7" cy="5.2" r="0.9" fill="url(#fg7)"/></svg>
 </div>
 
 <script>
@@ -1014,7 +1016,9 @@ function updateGradient() {
     g: Math.min(255, center.g + lift),
     b: Math.min(255, center.b + lift)
   };
-  document.body.style.background = `radial-gradient(ellipse at 50% 50%, rgb(${center.r},${center.g},${center.b}) 0%, rgb(${edge.r},${edge.g},${edge.b}) 100%)`;
+  const bg = `radial-gradient(ellipse at 50% 50%, rgb(${center.r},${center.g},${center.b}) 0%, rgb(${edge.r},${edge.g},${edge.b}) 100%)`;
+  document.body.style.background = bg;
+  document.documentElement.style.background = `rgb(${center.r},${center.g},${center.b})`;
 }
 
 window.addEventListener('scroll', updateGradient, { passive: true });
