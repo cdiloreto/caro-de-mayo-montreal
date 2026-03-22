@@ -130,7 +130,7 @@
   }
   .splash .dates {
     font-family: var(--sans);
-    font-size: 15px;
+    font-size: 16px;
     color: rgba(255,255,255,0.85);
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -281,10 +281,10 @@
     font-style: italic;
   }
   .section-sub {
-    font-size: 14px;
+    font-size: 15px;
     color: rgba(255,255,255,0.75);
     margin-bottom: 2rem;
-    line-height: 1.5;
+    line-height: 2;
   }
   .section-sub a {
     color: rgba(255,255,255,0.85);
@@ -349,7 +349,7 @@
   }
   .event-body { flex: 1; }
   .event-title { font-size: 14px; font-weight: 700; line-height: 1.5; }
-  .event-detail { font-size: 12px; color: var(--text-mid); margin-top: 3px; line-height: 1.6; }
+  .event-detail { font-size: 12px; color: var(--text-mid); margin-top: 3px; line-height: 1.5; }
   .event-detail a {
     color: var(--text-mid); text-decoration: underline;
     text-underline-offset: 2px; text-decoration-color: rgba(107,91,86,0.3);
@@ -415,18 +415,18 @@
     border: 1px solid rgba(43,34,32,0.06);
     border-radius: 10px; padding: 8px 12px; margin-bottom: 6px;
   }
-  .spot-name { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
-  .spot-desc { font-size: 10px; color: var(--text-mid); line-height: 1.5; }
+  .spot-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .spot-desc { font-size: 11px; color: var(--text-mid); line-height: 1.5; }
 
   /* ── Checklist (compact) ── */
   .checklist-category { margin-bottom: 1.25rem; }
   .checklist-category-title {
-    font-size: 9px; font-weight: 600; color: var(--accent);
+    font-size: 10px; font-weight: 600; color: var(--accent);
     margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.1em;
   }
   .checklist-item {
     display: flex; align-items: flex-start; gap: 8px;
-    padding: 4px 0; border-bottom: 1px solid rgba(43,34,32,0.04); font-size: 12px;
+    padding: 5px 0; border-bottom: 1px solid rgba(43,34,32,0.04); font-size: 13px;
   }
   .checklist-item:last-child { border-bottom: none; }
   .checklist-item input[type="checkbox"] {
@@ -434,7 +434,7 @@
     width: 13px; height: 13px;
   }
   .checklist-item label { cursor: pointer; line-height: 1.4; }
-  .checklist-item .item-note { font-size: 10px; color: var(--text-light); display: block; margin-top: 1px; }
+  .checklist-item .item-note { font-size: 11px; color: var(--text-light); display: block; margin-top: 1px; }
   .checklist-item.checked label { text-decoration: line-through; color: var(--text-light); }
 
   /* ── Map ── */
@@ -544,8 +544,8 @@
 <div class="section reveal" id="guests">
   <div class="section-title">Les Invités</div>
   <div class="section-sub">
-    <a href="https://www.airbnb.com/l/u5I9ntdd?s=67&unique_share_id=823a9924-3d98-472c-bc8d-7fe2c9d1f385">Airbnb</a> &middot; <a href="https://www.google.com/maps/place/4644+Rue+Saint-Denis,+Montréal,+QC+H2J+2L3/@45.510278,-73.583333,17z/data=!3m1!4b1!4m5!3m4!1s0x4cc919a0a0a0a0a0:0x4cc919a0a0a0a0a0!8m2!3d45.510278!4d-73.583333">4644 Rue Saint-Denis
-Montreal, QC H2J 2L3</a>" &middot; 7 personnes
+    <a href="https://www.airbnb.com/l/u5I9ntdd?s=67&unique_share_id=823a9924-3d98-472c-bc8d-7fe2c9d1f385">Airbnb </a> &middot; <a href="https://www.google.com/maps/place/4644+Rue+Saint-Denis,+Montréal,+QC+H2J+2L3/@45.510278,-73.583333,17z/data=!3m1!4b1!4m5!3m4!1s0x4cc919a0a0a0a0a0:0x4cc919a0a0a0a0a0!8m2!3d45.510278!4d-73.583333">4644 Rue Saint-Denis
+Montréal</a> &middot; 7 personnes
   </div>
   <div class="card">
     <div class="guest-row">
@@ -709,7 +709,7 @@ Montreal, QC H2J 2L3</a>" &middot; 7 personnes
     </div>
     <div class="checklist-category">
       <div class="checklist-category-title">Clothes</div>
-      <div class="checklist-item"><input type="checkbox" id="p5"><label for="p5">One nice outfit<span class="item-note">Birthday dinner Sunday night</span></label></div>
+      <div class="checklist-item"><input type="checkbox" id="p5"><label for="p5">One nice dinner outfit<span class="item-note">Birthday dinner Sunday night</span></label></div>
       <div class="checklist-item"><input type="checkbox" id="p6"><label for="p6">A few casual-cute outfits for picnic/dinners/bars</label></div>
       <div class="checklist-item"><input type="checkbox" id="p7"><label for="p7">Clothes for hike + biking activities</label></div>
       <div class="checklist-item"><input type="checkbox" id="p8"><label for="p8">Comfy walking shoes<span class="item-note">Walkable city type beat + one low-key hike</span></label></div>
@@ -764,7 +764,7 @@ Montreal, QC H2J 2L3</a>" &middot; 7 personnes
         <div style="font-size: 11px; color: var(--text-light);">50°F</div>
       </div>
     </div>
-    <p style="font-size: 10px; color: var(--text-light); margin-top: 12px; text-align: center;">Historical averages for Montréal in early May. Check closer to the trip for real forecasts.</p>
+    <p style="font-size: 11px; color: var(--text-light); margin-top: 12px; text-align: center;">Historical averages for Montréal in early May. Check closer to the trip for real forecasts.</p>
   </div>
 </div>
 
@@ -928,11 +928,16 @@ if (!isMobile) {
       splashImgEls[prevIdx].style.transition = 'none';
       splashImgEls[autoIdx].style.transition = 'none';
 
-      // Step 1: Fade out the last image in place
+      // Step 1: Fade out the last image while sliding it right
+      const slideDistance = window.innerWidth * 0.15;
       const fadeOut = () => {
         progress += 0.03;
         if (progress >= 1) progress = 1;
-        splashImgEls[prevIdx].style.opacity = String(0.4 * (1 - progress));
+        const ease = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        splashImgEls[prevIdx].style.opacity = String(0.4 * (1 - ease));
+        // Slide the whole container right as it fades out
+        const currentOffset = (startPercent - 0.5) * window.innerWidth * 0.9;
+        splashImgContainer.style.left = `calc(50% + ${currentOffset + slideDistance * ease}px)`;
         if (progress < 1) { requestAnimationFrame(fadeOut); return; }
 
         // Fully hidden — now reposition while invisible
@@ -941,15 +946,19 @@ if (!isMobile) {
         activeImgIdx = autoIdx;
         splashImgEls[autoIdx].style.opacity = '0';
         splashImgEls[autoIdx].classList.add('active');
-        // Move container to left position — nothing visible during this move
-        moveSplashTo(positions[autoIdx]);
+        // Move container to slightly left of target — nothing visible during this move
+        const targetOffset = (positions[autoIdx] - 0.5) * window.innerWidth * 0.9;
+        splashImgContainer.style.left = `calc(50% + ${targetOffset - slideDistance}px)`;
 
-        // Step 2: Fade in the first image at its left position
+        // Step 2: Fade in the first image while sliding in from the left
         let fadeProgress = 0;
         const fadeIn = () => {
           fadeProgress += 0.03;
           if (fadeProgress >= 1) fadeProgress = 1;
-          splashImgEls[autoIdx].style.opacity = String(0.4 * fadeProgress);
+          const fadeEase = fadeProgress < 0.5 ? 2 * fadeProgress * fadeProgress : 1 - Math.pow(-2 * fadeProgress + 2, 2) / 2;
+          splashImgEls[autoIdx].style.opacity = String(0.4 * fadeEase);
+          // Slide from left to final position
+          splashImgContainer.style.left = `calc(50% + ${targetOffset - slideDistance * (1 - fadeEase)}px)`;
           if (fadeProgress < 1) { requestAnimationFrame(fadeIn); return; }
           // Restore CSS transitions and clean up inline styles
           splashImgEls[prevIdx].style.transition = '';
