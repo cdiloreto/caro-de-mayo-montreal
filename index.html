@@ -803,8 +803,8 @@ const butterflySvg = (id, c1, c2, c3) => `<svg viewBox="0 0 24 24"><defs><linear
 const graphicsSVGs = [
   // 0: Rainbow heart
   `<svg viewBox="0 0 24 24"><defs><linearGradient id="rh" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF1493"/><stop offset="50%" stop-color="#FF69B4"/><stop offset="100%" stop-color="#FFD700"/></linearGradient></defs><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#rh)"/></svg>`,
-  // 1: Rainbow star
-  `<svg viewBox="0 0 24 24"><defs><linearGradient id="rs" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="50%" stop-color="#FF8C00"/><stop offset="100%" stop-color="#FF1493"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#rs)"/></svg>`,
+  // 1: Rainbow star (cyan → purple → pink)
+  `<svg viewBox="0 0 24 24"><defs><linearGradient id="rs" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00FFFF"/><stop offset="50%" stop-color="#A855F7"/><stop offset="100%" stop-color="#FF1493"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#rs)"/></svg>`,
   // 2: Music note
   `<svg viewBox="0 0 24 24"><defs><linearGradient id="mn" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00BFFF"/><stop offset="50%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#FF1493"/></linearGradient></defs><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z" fill="url(#mn)"/></svg>`,
   // 3: Flower (pink/blue)
@@ -813,22 +813,22 @@ const graphicsSVGs = [
   butterflySvg('bt1', '#FF69B4', '#8B5CF6', '#00BFFF'),
   // 5: Green heart
   `<svg viewBox="0 0 24 24"><defs><linearGradient id="gh" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00E640"/><stop offset="50%" stop-color="#00BFFF"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient></defs><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#gh)"/></svg>`,
-  // 6: Orange star
-  `<svg viewBox="0 0 24 24"><defs><linearGradient id="os" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF8C00"/><stop offset="50%" stop-color="#FFD700"/><stop offset="100%" stop-color="#00E640"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#os)"/></svg>`,
+  // 6: Star (lime → cyan → blue)
+  `<svg viewBox="0 0 24 24"><defs><linearGradient id="os" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#39FF14"/><stop offset="50%" stop-color="#00FFFF"/><stop offset="100%" stop-color="#00BFFF"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#os)"/></svg>`,
   // 7: Flower (pink/purple)
   `<svg viewBox="0 0 24 24"><defs><linearGradient id="dp" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF69B4"/><stop offset="33%" stop-color="#FF1493"/><stop offset="66%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#00BFFF"/></linearGradient></defs><circle cx="12" cy="8" r="3" fill="url(#dp)"/><circle cx="8.5" cy="10.5" r="3" fill="url(#dp)"/><circle cx="15.5" cy="10.5" r="3" fill="url(#dp)"/><circle cx="9.5" cy="14" r="3" fill="url(#dp)"/><circle cx="14.5" cy="14" r="3" fill="url(#dp)"/><circle cx="12" cy="12" r="2.5" fill="#FFD700"/><rect x="11.25" y="14" width="1.5" height="7" rx="0.75" fill="#4CAF50"/></svg>`,
   // 8: Pink music note
   `<svg viewBox="0 0 24 24"><defs><linearGradient id="pm" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF1493"/><stop offset="50%" stop-color="#FFD700"/><stop offset="100%" stop-color="#00BFFF"/></linearGradient></defs><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z" fill="url(#pm)"/></svg>`,
-  // 9: Flower (orange/gold)
-  `<svg viewBox="0 0 24 24"><defs><linearGradient id="hr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF69B4"/><stop offset="50%" stop-color="#FFD700"/><stop offset="100%" stop-color="#FF8C00"/></linearGradient></defs><circle cx="12" cy="8" r="3" fill="url(#hr)"/><circle cx="8.5" cy="10.5" r="3" fill="url(#hr)"/><circle cx="15.5" cy="10.5" r="3" fill="url(#hr)"/><circle cx="9.5" cy="14" r="3" fill="url(#hr)"/><circle cx="14.5" cy="14" r="3" fill="url(#hr)"/><circle cx="12" cy="12" r="2.5" fill="#FFD700"/><rect x="11.25" y="14" width="1.5" height="7" rx="0.75" fill="#4CAF50"/></svg>`,
-  // 10: Butterfly (orange/gold)
-  butterflySvg('bt2', '#FFD700', '#FF8C00', '#FF1493'),
-  // 11: Sparkle star
-  `<svg viewBox="0 0 24 24"><defs><linearGradient id="sp" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#FF69B4"/></linearGradient></defs><path d="M12 1l2 7h7l-5.5 4 2 7L12 15l-5.5 4 2-7L3 8h7z" fill="url(#sp)"/></svg>`,
+  // 9: Flower (magenta/cyan)
+  `<svg viewBox="0 0 24 24"><defs><linearGradient id="hr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF1493"/><stop offset="50%" stop-color="#A855F7"/><stop offset="100%" stop-color="#00FFFF"/></linearGradient></defs><circle cx="12" cy="8" r="3" fill="url(#hr)"/><circle cx="8.5" cy="10.5" r="3" fill="url(#hr)"/><circle cx="15.5" cy="10.5" r="3" fill="url(#hr)"/><circle cx="9.5" cy="14" r="3" fill="url(#hr)"/><circle cx="14.5" cy="14" r="3" fill="url(#hr)"/><circle cx="12" cy="12" r="2.5" fill="#FFD700"/><rect x="11.25" y="14" width="1.5" height="7" rx="0.75" fill="#4CAF50"/></svg>`,
+  // 10: Butterfly (cyan/lime)
+  butterflySvg('bt2', '#00FFFF', '#39FF14', '#A855F7'),
+  // 11: Sparkle star (white → pink)
+  `<svg viewBox="0 0 24 24"><defs><linearGradient id="sp" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#FF69B4"/></linearGradient></defs><path d="M12 1l2 7h7l-5.5 4 2 7L12 15l-5.5 4 2-7L3 8h7z" fill="url(#sp)"/></svg>`,
   // 12: Flower (blue/purple)
   `<svg viewBox="0 0 24 24"><defs><linearGradient id="bh" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00BFFF"/><stop offset="50%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#FF69B4"/></linearGradient></defs><circle cx="12" cy="8" r="3" fill="url(#bh)"/><circle cx="8.5" cy="10.5" r="3" fill="url(#bh)"/><circle cx="15.5" cy="10.5" r="3" fill="url(#bh)"/><circle cx="9.5" cy="14" r="3" fill="url(#bh)"/><circle cx="14.5" cy="14" r="3" fill="url(#bh)"/><circle cx="12" cy="12" r="2.5" fill="#FFD700"/><rect x="11.25" y="14" width="1.5" height="7" rx="0.75" fill="#4CAF50"/></svg>`,
-  // 13: Flower (gold/pink)
-  `<svg viewBox="0 0 24 24"><defs><linearGradient id="bf2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="33%" stop-color="#FF1493"/><stop offset="66%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#00BFFF"/></linearGradient></defs><circle cx="12" cy="8" r="3" fill="url(#bf2)"/><circle cx="8.5" cy="10.5" r="3" fill="url(#bf2)"/><circle cx="15.5" cy="10.5" r="3" fill="url(#bf2)"/><circle cx="9.5" cy="14" r="3" fill="url(#bf2)"/><circle cx="14.5" cy="14" r="3" fill="url(#bf2)"/><circle cx="12" cy="12" r="2.5" fill="#FFD700"/><rect x="11.25" y="14" width="1.5" height="7" rx="0.75" fill="#4CAF50"/></svg>`,
+  // 13: Flower (white/purple/cyan)
+  `<svg viewBox="0 0 24 24"><defs><linearGradient id="bf2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="33%" stop-color="#FF1493"/><stop offset="66%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#00FFFF"/></linearGradient></defs><circle cx="12" cy="8" r="3" fill="url(#bf2)"/><circle cx="8.5" cy="10.5" r="3" fill="url(#bf2)"/><circle cx="15.5" cy="10.5" r="3" fill="url(#bf2)"/><circle cx="9.5" cy="14" r="3" fill="url(#bf2)"/><circle cx="14.5" cy="14" r="3" fill="url(#bf2)"/><circle cx="12" cy="12" r="2.5" fill="#FFD700"/><rect x="11.25" y="14" width="1.5" height="7" rx="0.75" fill="#4CAF50"/></svg>`,
 ];
 const splash = document.getElementById('splash');
 
@@ -859,7 +859,7 @@ graphicsSVGs.forEach((svg, i) => {
   const size = (24 + Math.random() * 28) + 'px';
   el.style.width = size;
   el.style.height = size;
-  el.style.opacity = 0.3 + Math.random() * 0.3;
+  el.style.opacity = 0.5 + Math.random() * 0.3;
   splash.appendChild(el);
 });
 
@@ -940,34 +940,38 @@ if (!isMobile) {
         splashImgContainer.style.left = `calc(50% + ${currentOffset + slideDistance * ease}px)`;
         if (progress < 1) { requestAnimationFrame(fadeOut); return; }
 
-        // Fully hidden — now reposition while invisible
+        // Fully hidden — reposition while everything is invisible
         splashImgEls[prevIdx].style.opacity = '0';
         splashImgEls[prevIdx].classList.remove('active');
         activeImgIdx = autoIdx;
+        // Force opacity 0 BEFORE adding active class to prevent flash
         splashImgEls[autoIdx].style.opacity = '0';
         splashImgEls[autoIdx].classList.add('active');
-        // Move container to slightly left of target — nothing visible during this move
+        // Move container to left of target while invisible
         const targetOffset = (positions[autoIdx] - 0.5) * window.innerWidth * 0.9;
         splashImgContainer.style.left = `calc(50% + ${targetOffset - slideDistance}px)`;
 
-        // Step 2: Fade in the first image while sliding in from the left
-        let fadeProgress = 0;
-        const fadeIn = () => {
-          fadeProgress += 0.03;
-          if (fadeProgress >= 1) fadeProgress = 1;
-          const fadeEase = fadeProgress < 0.5 ? 2 * fadeProgress * fadeProgress : 1 - Math.pow(-2 * fadeProgress + 2, 2) / 2;
-          splashImgEls[autoIdx].style.opacity = String(0.4 * fadeEase);
-          // Slide from left to final position
-          splashImgContainer.style.left = `calc(50% + ${targetOffset - slideDistance * (1 - fadeEase)}px)`;
-          if (fadeProgress < 1) { requestAnimationFrame(fadeIn); return; }
-          // Restore CSS transitions and clean up inline styles
-          splashImgEls[prevIdx].style.transition = '';
-          splashImgEls[prevIdx].style.opacity = '';
-          splashImgEls[autoIdx].style.transition = '';
-          splashImgEls[autoIdx].style.opacity = '';
-          animating = false;
-        };
-        requestAnimationFrame(fadeIn);
+        // Wait two frames to ensure reposition is painted before fading in
+        requestAnimationFrame(() => { requestAnimationFrame(() => {
+          // Step 2: Fade in the first image while sliding in from the left
+          let fadeProgress = 0;
+          const fadeIn = () => {
+            fadeProgress += 0.03;
+            if (fadeProgress >= 1) fadeProgress = 1;
+            const fadeEase = fadeProgress < 0.5 ? 2 * fadeProgress * fadeProgress : 1 - Math.pow(-2 * fadeProgress + 2, 2) / 2;
+            splashImgEls[autoIdx].style.opacity = String(0.4 * fadeEase);
+            // Slide from left to final position
+            splashImgContainer.style.left = `calc(50% + ${targetOffset - slideDistance * (1 - fadeEase)}px)`;
+            if (fadeProgress < 1) { requestAnimationFrame(fadeIn); return; }
+            // Restore CSS transitions and clean up inline styles
+            splashImgEls[prevIdx].style.transition = '';
+            splashImgEls[prevIdx].style.opacity = '';
+            splashImgEls[autoIdx].style.transition = '';
+            splashImgEls[autoIdx].style.opacity = '';
+            animating = false;
+          };
+          requestAnimationFrame(fadeIn);
+        }); });
       };
       requestAnimationFrame(fadeOut);
     } else {
