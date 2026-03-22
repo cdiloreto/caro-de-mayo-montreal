@@ -357,7 +357,7 @@
   .event-detail a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
   .badge {
-    display: inline-block; font-size: 10px; padding: 2px 8px;
+    display: inline-block; font-size: 11px; padding: 2px 8px;
     border-radius: 20px; font-weight: 700; vertical-align: middle;
   }
   .badge-book { background: #F0E6FF; color: #7C3AED; }
@@ -841,9 +841,9 @@ graphicsSVGs.forEach((svg, i) => {
   const staggerX = (row % 2 === 1) ? cellW * 0.3 : 0;
   el.style.animationDuration = (3 + Math.random() * 4) + 's';
   el.style.animationDelay = (Math.random() * 3) + 's';
-  // Vary sizes: mix of small (16-24), medium (28-40), and large (42-58)
+  // Vary sizes: medium (28-40) and large (42-58)
   const sizeRoll = Math.random();
-  const sizePx = sizeRoll < 0.3 ? (20 + Math.random() * 8) : sizeRoll < 0.7 ? (28 + Math.random() * 12) : (42 + Math.random() * 16);
+  const sizePx = sizeRoll < 0.5 ? (28 + Math.random() * 12) : (42 + Math.random() * 16);
   el.style.width = sizePx + 'px';
   el.style.height = sizePx + 'px';
   // Clamp so icon stays fully visible — account for icon size relative to viewport
