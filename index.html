@@ -837,8 +837,8 @@ graphicsSVGs.forEach((svg, i) => {
   // Randomize position within cell more aggressively to break column feel
   const jitterX = (Math.random() - 0.5) * cellW * 0.85;
   const jitterY = (Math.random() - 0.5) * cellH * 0.75;
-  // Add extra diagonal offset for odd rows to stagger the grid
-  const staggerX = (row % 2 === 1) ? cellW * 0.3 : 0;
+  // Stagger odd rows — offset in both directions so left/right edges are equally reachable
+  const staggerX = (row % 2 === 1) ? cellW * 0.3 : -cellW * 0.15;
   el.style.animationDuration = (3 + Math.random() * 4) + 's';
   el.style.animationDelay = (Math.random() * 3) + 's';
   // Vary sizes: medium (28-40) and large (42-58)
