@@ -34,17 +34,21 @@
     transition: background 0.05s linear;
     position: relative;
   }
-  /* Tie-dye texture from image */
+  /* Spiral texture overlay — must be large enough that rotation never reveals edges.
+     At 45° rotation the diagonal needs to cover the viewport, so we use 150vmax sizing
+     centered with translate(-50%,-50%) to guarantee full coverage on any aspect ratio. */
   body::before {
     content: '';
     position: fixed;
-    /* Zoom in enough so rotation never reveals edges — 50% overshoot on all sides */
-    inset: -50%;
-    width: 200%;
-    height: 200%;
+    top: 50%;
+    left: 50%;
+    width: 150vmax;
+    height: 150vmax;
+    transform-origin: center center;
+    transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 0;
-    background-image: url('assets/tie-dye.jpg');
+    background-image: url('assets/spiral-texture.jpg');
     background-size: cover;
     background-position: center;
     opacity: 0.3;
@@ -52,8 +56,8 @@
     animation: tiedyeSpin 90s linear infinite;
   }
   @keyframes tiedyeSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
   body::after {
     content: '';
