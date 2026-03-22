@@ -544,7 +544,8 @@
 <div class="section reveal" id="guests">
   <div class="section-title">Les Invités</div>
   <div class="section-sub">
-    Airbnb: <a href="https://www.airbnb.com/l/u5I9ntdd?s=67&unique_share_id=823a9924-3d98-472c-bc8d-7fe2c9d1f385">Le Plateau–Mont-Royal, Montréal</a> &middot; 7 personnes
+    <a href="https://www.airbnb.com/l/u5I9ntdd?s=67&unique_share_id=823a9924-3d98-472c-bc8d-7fe2c9d1f385">Airbnb</a> &middot; <a href="https://www.google.com/maps/place/4644+Rue+Saint-Denis,+Montréal,+QC+H2J+2L3/@45.510278,-73.583333,17z/data=!3m1!4b1!4m5!3m4!1s0x4cc919a0a0a0a0a0:0x4cc919a0a0a0a0a0!8m2!3d45.510278!4d-73.583333">4644 Rue Saint-Denis
+Montreal, QC H2J 2L3</a>" &middot; 7 personnes
   </div>
   <div class="card">
     <div class="guest-row">
@@ -846,11 +847,13 @@ graphicsSVGs.forEach((svg, i) => {
   el.innerHTML = svg;
   const col = i % gridCols;
   const row = Math.floor(i / gridCols);
-  // Center each icon in its cell with slight jitter
-  const jitterX = (Math.random() - 0.5) * cellW * 0.5;
-  const jitterY = (Math.random() - 0.5) * cellH * 0.4;
-  el.style.left = (col * cellW + cellW / 2 + jitterX) + '%';
-  el.style.top = (row * cellH + cellH / 2 + jitterY) + '%';
+  // Randomize position within cell more aggressively to break column feel
+  const jitterX = (Math.random() - 0.5) * cellW * 0.85;
+  const jitterY = (Math.random() - 0.5) * cellH * 0.75;
+  // Add extra diagonal offset for odd rows to stagger the grid
+  const staggerX = (row % 2 === 1) ? cellW * 0.3 : 0;
+  el.style.left = Math.max(2, Math.min(95, col * cellW + cellW / 2 + jitterX + staggerX)) + '%';
+  el.style.top = Math.max(2, Math.min(95, row * cellH + cellH / 2 + jitterY)) + '%';
   el.style.animationDuration = (3 + Math.random() * 4) + 's';
   el.style.animationDelay = (Math.random() * 3) + 's';
   const size = (24 + Math.random() * 28) + 'px';
