@@ -856,7 +856,9 @@ graphicsSVGs.forEach((svg, i) => {
   el.style.top = Math.max(2, Math.min(95, row * cellH + cellH / 2 + jitterY)) + '%';
   el.style.animationDuration = (3 + Math.random() * 4) + 's';
   el.style.animationDelay = (Math.random() * 3) + 's';
-  const size = (24 + Math.random() * 28) + 'px';
+  // Vary sizes: mix of small (16-24), medium (28-40), and large (48-64)
+  const sizeRoll = Math.random();
+  const size = (sizeRoll < 0.3 ? (16 + Math.random() * 8) : sizeRoll < 0.7 ? (28 + Math.random() * 12) : (48 + Math.random() * 16)) + 'px';
   el.style.width = size;
   el.style.height = size;
   el.style.opacity = 0.5 + Math.random() * 0.3;
