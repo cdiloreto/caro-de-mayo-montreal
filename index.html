@@ -852,15 +852,18 @@ graphicsSVGs.forEach((svg, i) => {
   const jitterY = (Math.random() - 0.5) * cellH * 0.75;
   // Add extra diagonal offset for odd rows to stagger the grid
   const staggerX = (row % 2 === 1) ? cellW * 0.3 : 0;
-  el.style.left = Math.max(2, Math.min(95, col * cellW + cellW / 2 + jitterX + staggerX)) + '%';
-  el.style.top = Math.max(2, Math.min(95, row * cellH + cellH / 2 + jitterY)) + '%';
   el.style.animationDuration = (3 + Math.random() * 4) + 's';
   el.style.animationDelay = (Math.random() * 3) + 's';
-  // Vary sizes: mix of small (16-24), medium (28-40), and large (48-64)
+  // Vary sizes: mix of small (16-24), medium (28-40), and large (42-58)
   const sizeRoll = Math.random();
-  const size = (sizeRoll < 0.3 ? (16 + Math.random() * 8) : sizeRoll < 0.7 ? (28 + Math.random() * 12) : (48 + Math.random() * 16)) + 'px';
-  el.style.width = size;
-  el.style.height = size;
+  const sizePx = sizeRoll < 0.3 ? (20 + Math.random() * 8) : sizeRoll < 0.7 ? (28 + Math.random() * 12) : (42 + Math.random() * 16);
+  el.style.width = sizePx + 'px';
+  el.style.height = sizePx + 'px';
+  // Clamp so icon stays fully visible — account for icon size relative to viewport
+  const maxLeftPct = 100 - (sizePx / window.innerWidth) * 100;
+  const maxTopPct = 100 - (sizePx / window.innerHeight) * 100;
+  el.style.left = Math.max(1, Math.min(maxLeftPct, col * cellW + cellW / 2 + jitterX + staggerX)) + '%';
+  el.style.top = Math.max(1, Math.min(maxTopPct, row * cellH + cellH / 2 + jitterY)) + '%';
   el.style.opacity = 0.5 + Math.random() * 0.3;
   splash.appendChild(el);
 });
