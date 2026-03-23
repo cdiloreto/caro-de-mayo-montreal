@@ -878,13 +878,15 @@ let mouseVelocity = 0;
 let currentRotation = 0;
 
 // Wait for initial image to fully load before revealing (prevents choppy progressive render)
+let splashReady = false;
 if (splashImgEls.length > 0) {
   const initialImg = splashImgEls[centerIdx];
   const showImage = () => {
+    const reveal = () => { initialImg.classList.add('active'); splashReady = true; };
     if (initialImg.decode) {
-      initialImg.decode().then(() => initialImg.classList.add('active')).catch(() => initialImg.classList.add('active'));
+      initialImg.decode().then(reveal).catch(reveal);
     } else {
-      initialImg.classList.add('active');
+      reveal();
     }
   };
   if (initialImg.complete) showImage();
@@ -1013,7 +1015,15 @@ if (!isMobile) {
     }
   }
 
-  setInterval(stepCarousel, 2000);
+  // Wait until initial image is loaded and revealed before starting carousel
+  function startCarouselWhenReady() {
+    if (splashReady) {
+      setTimeout(() => setInterval(stepCarousel, 2000), 1500);
+    } else {
+      requestAnimationFrame(startCarouselWhenReady);
+    }
+  }
+  startCarouselWhenReady();
 }
 
 // Smoothly decay rotation back to 0 when mouse stops
