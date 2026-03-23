@@ -58,13 +58,17 @@
     background-image: url('assets/spiral-texture.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.3;
     mix-blend-mode: overlay;
-    animation: tiedyeSpin 90s linear infinite;
+    animation: tiedyeSpin 90s linear infinite, textureFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    opacity: 0;
   }
   @keyframes tiedyeSpin {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes textureFadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.3; }
   }
   body::after {
     content: '';
@@ -101,7 +105,7 @@
     color: rgba(255,255,255,0.85);
     margin-bottom: 1.5rem;
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.3s forwards;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
   }
   .splash h1 {
     font-family: 'Comic Neue', 'Comic Sans MS', cursive;
@@ -116,7 +120,7 @@
     margin-bottom: 0.4rem;
     letter-spacing: -0.01em;
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.5s forwards, rainbowShift 4s linear infinite;
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards, rainbowShift 4s linear infinite;
     -webkit-text-stroke: 2px rgba(255,255,255,0.3);
     filter: drop-shadow(0 2px 8px rgba(255,20,147,0.5));
   }
@@ -133,7 +137,7 @@
     text-shadow: 0 0 12px rgba(255,255,255,0.6), 0 2px 6px rgba(0,0,0,0.3);
     margin-bottom: 1rem;
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.7s forwards;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
   }
   .splash .dates {
     font-family: var(--sans);
@@ -142,7 +146,7 @@
     font-weight: 700;
     letter-spacing: 0.06em;
     opacity: 0;
-    animation: fadeUp 0.8s ease 0.9s forwards;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
   }
   .scroll-hint {
     position: absolute;
@@ -155,9 +159,8 @@
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    animation: bounce 2s ease infinite 1.5s;
     opacity: 0;
-    animation: fadeUp 0.6s ease 1.2s forwards, bounce 2s ease infinite 2s;
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards, bounce 2s ease infinite 2.5s;
   }
   .scroll-hint svg {
     width: 18px; height: 18px;
@@ -199,14 +202,15 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease;
+    transform: translate(-50%, -50%) scale(0.92);
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .splash-img--landscape {
     width: clamp(280px, 40vw, 420px);
   }
   .splash-img.active {
     opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1);
   }
   .splash h1, .splash .edition, .splash-invite, .splash .dates {
     position: relative;
@@ -237,8 +241,8 @@
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
@@ -248,8 +252,8 @@
   /* ── Scroll reveal ── */
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .reveal.visible {
     opacity: 1;
@@ -871,7 +875,8 @@ let lastMouseX = 0;
 let mouseVelocity = 0;
 let currentRotation = 0;
 
-if (splashImgEls.length > 0) splashImgEls[centerIdx].classList.add('active');
+// Delay initial image reveal so it fades in smoothly after page load
+if (splashImgEls.length > 0) setTimeout(() => splashImgEls[centerIdx].classList.add('active'), 200);
 
 function moveSplashTo(xPercent) {
   const offsetX = (xPercent - 0.5) * window.innerWidth * 0.9;
