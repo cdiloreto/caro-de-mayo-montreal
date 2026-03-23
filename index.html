@@ -11,6 +11,8 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://caro-de-mayo-30th.vercel.app/assets/03.JPG">
+<link rel="preload" href="assets/spiral-texture.jpg" as="image">
+<link rel="preload" href="assets/03.JPG" as="image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
@@ -59,16 +61,16 @@
     background-size: cover;
     background-position: center;
     mix-blend-mode: overlay;
-    animation: tiedyeSpin 90s linear infinite, textureFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    animation: tiedyeSpin 90s linear infinite;
     opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   @keyframes tiedyeSpin {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
   }
-  @keyframes textureFadeIn {
-    from { opacity: 0; }
-    to { opacity: 0.3; }
+  body.texture-loaded::before {
+    opacity: 0.3;
   }
   body::after {
     content: '';
@@ -875,8 +877,25 @@ let lastMouseX = 0;
 let mouseVelocity = 0;
 let currentRotation = 0;
 
-// Delay initial image reveal so it fades in smoothly after page load
-if (splashImgEls.length > 0) setTimeout(() => splashImgEls[centerIdx].classList.add('active'), 200);
+// Wait for initial image to fully load before revealing (prevents choppy progressive render)
+if (splashImgEls.length > 0) {
+  const initialImg = splashImgEls[centerIdx];
+  const showImage = () => {
+    if (initialImg.decode) {
+      initialImg.decode().then(() => initialImg.classList.add('active')).catch(() => initialImg.classList.add('active'));
+    } else {
+      initialImg.classList.add('active');
+    }
+  };
+  if (initialImg.complete) showImage();
+  else initialImg.addEventListener('load', showImage);
+}
+
+// Fade in texture once its image is loaded
+const textureImg = new Image();
+textureImg.src = 'assets/spiral-texture.jpg';
+if (textureImg.complete) document.body.classList.add('texture-loaded');
+else textureImg.addEventListener('load', () => document.body.classList.add('texture-loaded'));
 
 function moveSplashTo(xPercent) {
   const offsetX = (xPercent - 0.5) * window.innerWidth * 0.9;
