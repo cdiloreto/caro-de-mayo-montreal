@@ -745,41 +745,104 @@ Montréal</a> &middot; 7 personnes
   <div class="section-title">La Météo</div>
   <div class="section-sub" style="color: rgba(255,255,255,0.75);">Montréal forecast for our trip</div>
   <div class="card">
-    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; text-align: center;">
-      <div class="weather-day">
-        <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px;">Fri 5/1</div>
-        <div style="font-size: 28px; margin-bottom: 4px;">⛅</div>
-        <div style="font-size: 13px; font-weight: 700;">61°F</div>
-        <div style="font-size: 11px; color: var(--text-light);">48°F</div>
-      </div>
-      <div class="weather-day">
-        <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px;">Sat 5/2</div>
-        <div style="font-size: 28px; margin-bottom: 4px;">🌤️</div>
-        <div style="font-size: 13px; font-weight: 700;">64°F</div>
-        <div style="font-size: 11px; color: var(--text-light);">50°F</div>
-      </div>
-      <div class="weather-day">
-        <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px;">Sun 5/3</div>
-        <div style="font-size: 28px; margin-bottom: 4px;">☀️</div>
-        <div style="font-size: 13px; font-weight: 700;">68°F</div>
-        <div style="font-size: 11px; color: var(--text-light);">52°F</div>
-      </div>
-      <div class="weather-day">
-        <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px;">Mon 5/4</div>
-        <div style="font-size: 28px; margin-bottom: 4px;">🌧️</div>
-        <div style="font-size: 13px; font-weight: 700;">59°F</div>
-        <div style="font-size: 11px; color: var(--text-light);">48°F</div>
-      </div>
-      <div class="weather-day">
-        <div style="font-weight: 700; font-size: 13px; margin-bottom: 6px;">Tue 5/5</div>
-        <div style="font-size: 28px; margin-bottom: 4px;">⛅</div>
-        <div style="font-size: 13px; font-weight: 700;">63°F</div>
-        <div style="font-size: 11px; color: var(--text-light);">50°F</div>
-      </div>
+    <div id="weather-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; text-align: center;">
+      <div class="weather-day" style="opacity:0.4;grid-column:1/-1;padding:16px 0;font-size:13px;">Loading forecast…</div>
     </div>
-    <p style="font-size: 11px; color: var(--text-light); margin-top: 12px; text-align: center;">Historical averages for Montréal in early May. Check closer to the trip for real forecasts.</p>
+    <p id="weather-source" style="font-size: 11px; color: var(--text-light); margin-top: 12px; text-align: center;"></p>
   </div>
 </div>
+
+<script>
+(function() {
+  const DAYS = [
+    { label: 'Fri 5/1', date: '2026-05-01' },
+    { label: 'Sat 5/2', date: '2026-05-02' },
+    { label: 'Sun 5/3', date: '2026-05-03' },
+    { label: 'Mon 5/4', date: '2026-05-04' },
+    { label: 'Tue 5/5', date: '2026-05-05' },
+  ];
+
+  function wmoEmoji(code) {
+    if (code === 0) return '☀️';
+    if (code <= 2) return '🌤️';
+    if (code === 3) return '☁️';
+    if (code <= 48) return '🌫️';
+    if (code <= 55) return '🌦️';
+    if (code <= 65) return '🌧️';
+    if (code <= 77) return '🌨️';
+    if (code <= 82) return '🌦️';
+    if (code <= 86) return '🌨️';
+    return '⛈️';
+  }
+
+  function wmoDesc(code) {
+    if (code === 0) return 'Clear';
+    if (code <= 2) return 'Partly cloudy';
+    if (code === 3) return 'Overcast';
+    if (code <= 48) return 'Foggy';
+    if (code <= 55) return 'Drizzle';
+    if (code <= 65) return 'Rain';
+    if (code <= 77) return 'Snow';
+    if (code <= 82) return 'Showers';
+    if (code <= 86) return 'Snow showers';
+    return 'Thunderstorm';
+  }
+
+  // Open-Meteo supports up to 16 days ahead; cap end_date accordingly
+  // Use local date parts (not toISOString) to avoid UTC timezone offset shifting the date
+  function localDateStr(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+  const today = new Date();
+  const maxDate = new Date(today);
+  maxDate.setDate(today.getDate() + 16);
+  const tripEndStr = '2026-05-05';
+  const endStr = localDateStr(maxDate) < tripEndStr ? localDateStr(maxDate) : tripEndStr;
+
+  const url = 'https://api.open-meteo.com/v1/forecast'
+    + '?latitude=45.5017&longitude=-73.5673'
+    + '&daily=temperature_2m_max,temperature_2m_min,weathercode'
+    + '&timezone=America%2FToronto'
+    + '&temperature_unit=fahrenheit'
+    + '&start_date=2026-05-01&end_date=' + endStr;
+
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      if (data.error) throw new Error(data.reason);
+      const { temperature_2m_max: highs, temperature_2m_min: lows, weathercode: codes, time: dates } = data.daily;
+      const grid = document.getElementById('weather-grid');
+      grid.innerHTML = DAYS.map((d) => {
+        const i = dates ? dates.indexOf(d.date) : -1;
+        const hasData = i !== -1 && highs[i] != null;
+        if (!hasData) {
+          return `
+            <div class="weather-day" style="opacity:0.45;">
+              <div style="font-weight:700;font-size:13px;margin-bottom:6px;">${d.label}</div>
+              <div style="font-size:22px;margin-bottom:4px;">🔮</div>
+              <div style="font-size:11px;color:var(--text-light);">Soon</div>
+            </div>`;
+        }
+        return `
+          <div class="weather-day">
+            <div style="font-weight:700;font-size:13px;margin-bottom:6px;">${d.label}</div>
+            <div style="font-size:28px;margin-bottom:4px;">${wmoEmoji(codes[i])}</div>
+            <div style="font-size:11px;color:var(--text-light);margin-bottom:4px;">${wmoDesc(codes[i])}</div>
+            <div style="font-size:13px;font-weight:700;">${Math.round(highs[i])}°F</div>
+            <div style="font-size:11px;color:var(--text-light);">${Math.round(lows[i])}°F</div>
+          </div>`;
+      }).join('');
+      const now = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      document.getElementById('weather-source').textContent = `Live forecast via Open-Meteo · Updated ${now}`;
+    })
+    .catch(() => {
+      document.getElementById('weather-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;font-size:12px;opacity:0.6;padding:12px 0;">Forecast unavailable — check back closer to the trip</div>';
+    });
+})();
+</script>
 
 <!-- ── Playlist ── -->
 <div class="section reveal" id="playlist">
