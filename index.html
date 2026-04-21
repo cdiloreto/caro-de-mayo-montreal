@@ -812,8 +812,7 @@ Montréal</a> &middot; 7 personnes
         <div style="font-size:22px;margin-bottom:4px;">🔮</div>
         <div style="font-size:11px;color:var(--text-light);">Soon</div>
       </div>`).join('');
-    const daysUntil = Math.ceil((new Date(tripStartStr) - today) / 86400000);
-    document.getElementById('weather-source').textContent = `Forecast unlocks in ~${daysUntil} days · Check back closer to the trip`;
+    document.getElementById('weather-source').textContent = 'Check back closer to the trip for the real forecast';
   }
 
   const grid = document.getElementById('weather-grid');
