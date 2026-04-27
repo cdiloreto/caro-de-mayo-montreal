@@ -376,6 +376,7 @@
   .badge-book { background: #F0E6FF; color: #7C3AED; }
   .badge-home { background: #ECFDF5; color: #059669; }
   .badge-opt  { background: #FFF0F5; color: #DB2777; }
+  .badge-caropick  { background: #fff6f0; color: #db5727; }
 
   /* ── Carousel ── */
   .carousel { position: relative; overflow: hidden; transition: height 0.35s ease; touch-action: pan-y pinch-zoom; }
@@ -626,6 +627,7 @@ Montréal</a> &middot; 7 personnes
           <div class="event"><div class="dot"></div><div class="time">later</div><div class="event-body"><div class="event-title">Downtime / Get ready for dinner <span class="badge badge-home">at Airbnb</span></div></div></div>
           <div class="event"><div class="dot"></div><div class="time">7:15 PM</div><div class="event-body"><div class="event-title">Birthday dinner at Monarque <span class="badge badge-book">res for 7 · Brasserie</span></div><div class="event-detail"><a href="https://restaurantmonarque.ca/en/brasserie/">Menu</a></div></div></div>
           <div class="event"><div class="dot"></div><div class="time">10:15 PM</div><div class="event-body"><div class="event-title">Karaoke <span class="badge badge-book">res for 7</span></div><div class="event-detail">Bar K or Le Mic — private room</div></div></div>
+          <div class="event"><div class="dot"></div><div class="time">After hours</div><div class="event-body"><div class="event-title">Late-night poutine</div><div class="event-detail">La Belle Province, La Banquise, Orange Julep</div></div></div>
         </div>
       </div>
 
@@ -635,7 +637,7 @@ Montréal</a> &middot; 7 personnes
           <div class="event"><div class="dot"></div><div class="time">noonish</div><div class="event-body"><div class="event-title">Lachine Canal bike ride <span class="badge badge-opt">weather permitting</span></div><div class="event-detail">Rent bikes at <a href="https://mabicyclette.ca/rentals/">Ma Bicyclette</a> — flat, scenic, ~45–60 min out &amp; back leisurely</div></div></div>
           <div class="event"><div class="dot"></div><div class="time">afternoon</div><div class="event-body"><div class="event-title">Lunch at Marché Atwater</div><div class="event-detail">Food from market + eat by canal. Nearby: Greenspot Smoked Meat, Satay Brothers, Sumac</div></div></div>
           <div class="event"><div class="dot"></div><div class="time">later</div><div class="event-body"><div class="event-title">Free time</div><div class="event-detail">Wander Mile End, Rue Saint-Denis, grab a sweet treat, yap, nap</div></div></div>
-          <div class="event"><div class="dot"></div><div class="time">7 PM</div><div class="event-body"><div class="event-title">Dinner <span class="badge badge-book">res TBD</span></div><div class="event-detail">Rizière (Chinese) or Nemo (Vietnamese)</div></div></div>
+          <div class="event"><div class="dot"></div><div class="time">7 PM</div><div class="event-body"><div class="event-title">Dinner <span class="badge badge-book">res TBD</span></div><div class="event-detail">Else's, Chez Claudette, Noodles/Dumplings, Taza Flores</div></div></div>
           <div class="event"><div class="dot"></div><div class="time">after</div><div class="event-body"><div class="event-title">Bar nearby / hang at Airbnb <span class="badge badge-opt">optional</span></div></div></div>
         </div>
       </div>
@@ -679,29 +681,52 @@ Montréal</a> &middot; 7 personnes
 
       <div class="carousel-page active">
         <div class="list-block">
-          <div class="list-block-title">Cafés / Restos</div>
-          <div class="list-block-sub">Pour le petit-déj, le lunch, ou un p'tit snack</div>
-          <div class="spot"><div class="spot-name">Kahwa Café</div><div class="spot-desc">Coffee &amp; pita sandwiches right next to the Airbnb</div></div>
-          <div class="spot"><div class="spot-name">St-Viateur Bagel &amp; Café</div><div class="spot-desc">Iconic storefront known for wood-oven baked bagels with varied flavors &amp; toppings</div></div>
+          <div class="list-block-title">Breakfast / Cafés</div>
+          <div class="list-block-sub">Pour le café, petit-déj, ou un p'tit snack</div>
+          <div class="spot"><div class="spot-name">Kahwa Café <span class="badge badge-caropick">Caro Pick</span></div><div class="spot-desc">Coffee &amp; pita sandwiches right next to the Airbnb</div></div>
+          <div class="spot"><div class="spot-name">St-Viateur Bagel &amp; Café <span class="badge badge-caropick">Caro Pick</span></div><div class="spot-desc">Iconic storefront known for wood-oven baked bagels with varied flavors &amp; toppings</div></div>
+          <div class="spot"><div class="spot-name">Byblos Le Petit Cafe</div><div class="spot-desc">Persian coffeehouse &amp; lunch spot (rec from Emilie)</div></div>
+          <div class="spot"><div class="spot-name">Café Chez Téta</div><div class="spot-desc">Lebanese café lunch spot (rec from Noah — the best manoucheh) – closed Mon &amp; Tue</div></div>
           <div class="spot"><div class="spot-name">Bêden Càphê</div><div class="spot-desc">Vietnamese café with pastries, banh mi, noodle bowls</div></div>
           <div class="spot"><div class="spot-name">Tordu Cafe et Cremerie</div><div class="spot-desc">Café with matcha &amp; ice cream</div></div>
-          <div class="spot"><div class="spot-name">Schwartz's Deli</div><div class="spot-desc">Renowned deli, one of the oldest in Canada, offering huge sandwiches, smoked meats &amp; more</div></div>
-          <div class="spot"><div class="spot-name">Ma Poule Mouillée</div><div class="spot-desc">Casual counter-serve Portuguese grill known for its chicken &amp; other meat sandwiches (closed Mon)</div></div>
-          <div class="spot"><div class="spot-name">La Belle Tonki</div><div class="spot-desc">Independently-run Cambodian &amp; Vietnamese fusion restaurant with funky décor &amp; vegan choices (closed Mon &amp; Tue)</div></div>
-          <div class="spot"><div class="spot-name">Nouilles de Lan Zhou</div><div class="spot-desc">Busy noodle house with a smart interior dishing up housemade noodles in a variety of broths</div></div>
-          <div class="spot"><div class="spot-name">Sammi &amp; Soupe</div><div class="spot-desc">Chain with soup dumplings, noodles, &amp; Chinese beers</div></div>
+          
         </div>
       </div>
 
       <div class="carousel-page">
         <div class="list-block">
-          <div class="list-block-title">Bars à Proximité</div>
-          <div class="spot"><div class="spot-name">Le Bar Darling</div><div class="spot-desc">Beer, cider, cocktails, bites — open till 3 AM</div></div>
+          <div class="list-block-title">Restau's</div>
+          <div class="list-block-sub">Pour le dejeuner/souper informel</div>
+          <div class="spot"><div class="spot-name">Schwartz's Deli <span class="badge badge-caropick">Caro Pick</span></div><div class="spot-desc">Famous deli, one of the oldest in Canada, offering huge sandwiches, smoked meats &amp; more</div></div>
+          <div class="spot"><div class="spot-name">Ma Poule Mouillée <span class="badge badge-caropick">Caro Pick</span></div><div class="spot-desc">Counter-serve Portuguese grill known for its chicken &amp; other sandwiches (rec from Noah) – closed Mon</div></div>
+          <div class="spot"><div class="spot-name">Nouilles de Lan Zhou <span class="badge badge-caropick">Caro Pick</span></div><div class="spot-desc">Busy noodle house with a smart interior dishing up housemade noodles in a variety of broths</div></div>
+          <div class="spot"><div class="spot-name">La Belle Tonki <span class="badge badge-caropick">Caro Pick</span></div><div class="spot-desc">Independently-run Cambodian &amp; Vietnamese fusion restaurant with funky décor &amp; vegan choices (closed Mon &amp; Tue)</div></div>
+          <div class="spot"><div class="spot-name">Petit Poisson Dumpling</div><div class="spot-desc">Dumpling spot (rec from Emilie)</div></div>
+          <div class="spot"><div class="spot-name">Chez Claudtte</div><div class="spot-desc">Québécois diner with poutine near airbnb (rec from Noah – open till 12am)</div></div>
+          <div class="spot"><div class="spot-name">Orange Julep</div><div class="spot-desc">Fast food poutine spot – open late (Noah's fave spot)</div></div>
+          <div class="spot"><div class="spot-name">Paollo Et Suzanne</div><div class="spot-desc">Fast food poutine (Noah's second fave)</div></div>
+          <div class="spot"><div class="spot-name">La Banquise</div><div class="spot-desc">Poutine close to Airbnb (rec from Noah) – open 24hrs</div></div>
+          <div class="spot"><div class="spot-name">Patati Patata</div><div class="spot-desc">Another "wonky" poutine close to Airbnb (rec from Noah) – open till 2am</div></div>
+          <div class="spot"><div class="spot-name">La Belle Provence</div><div class="spot-desc">Late night chain, one near karaoke bar (rec from Noah)</div></div>
+        </div>
+      </div>
+
+      <div class="carousel-page">
+        <div class="list-block">
+          <div class="list-block-title">Bars/clubs à Proximité</div>
+          <div class="spot"><div class="spot-name">Ave Duluth</div><div class="spot-desc">Street w/ lots of bars & restos</div></div>
+          <div class="spot"><div class="spot-name">Bar Suzanne</div><div class="spot-desc">Cocktail bar + tapas (rec from Noah) — open till 2 AM</div></div>
+          <div class="spot"><div class="spot-name">Le Bar Darling</div><div class="spot-desc">Beer, cider, cocktails, bites (rec from Noah) — open till 3 AM</div></div>
+          <div class="spot"><div class="spot-name">Chez Ernest</div><div class="spot-desc">Bar w/ charcuterie (rec from Emilie) — open till 3 AM</div></div>
+          <div class="spot"><div class="spot-name">Siboire Saint-Laurent</div><div class="spot-desc">Brewpub (rec from Emilie) — open till 1 AM</div></div>
+          <div class="spot"><div class="spot-name">Bar Mamie</div><div class="spot-desc">Laid back bar w/ food (rec from Emilie)</div></div>
+          <div class="spot"><div class="spot-name">Mellön</div><div class="spot-desc">Microbrewery (double rec from Emilie) — open till 1 AM</div></div>
+          <div class="spot"><div class="spot-name">WILLS</div><div class="spot-desc">Microbrewery (rec from Emilie) — open till midnight</div></div>
+          <div class="spot"><div class="spot-name">Casa Del Popolo</div><div class="spot-desc">Live music bar (rec from Emilie) — open till 3 AM</div></div>
           <div class="spot"><div class="spot-name">Bily Kun</div><div class="spot-desc">Jazz cocktail lounge — open till 3 AM</div></div>
-          <div class="spot"><div class="spot-name">Bar Suzanne</div><div class="spot-desc">Cocktail bar + tapas — open till 2 AM</div></div>
-          <div class="spot"><div class="spot-name">Taverne Atlantic</div><div class="spot-desc">Airy bar — open till 1 AM</div></div>
-          <div class="spot"><div class="spot-name">Siboire Saint-Laurent</div><div class="spot-desc">Brewpub — open till 1 AM</div></div>
-          <div class="spot"><div class="spot-name">Bootlegger</div><div class="spot-desc">Speakeasy cocktail bar with bites &amp; music — open till 3 AM</div></div>
+          <div class="spot"><div class="spot-name">Le Systeme</div><div class="spot-desc">hip bar/club with great cocktails and good music (rec from Noah)</div></div>
+          <div class="spot"><div class="spot-name">Datcha</div><div class="spot-desc">techno/house/underground electronic, younger crowd (rec from Noah)</div></div>
+          <div class="spot"><div class="spot-name">Newspeak</div><div class="spot-desc"> rattier nightclub vibe, but really cool lights and good sound system (rec from Noah)</div></div>
         </div>
       </div>
     </div>
@@ -1275,32 +1300,50 @@ function pin(lat, lng, color, name, desc) {
 }
 
 pin(45.5247, -73.5850, '#FF1493', 'Airbnb', '4644 Rue Saint-Denis — Home base');
+// Restaurants
 pin(45.5179, -73.5913, '#FF8C00', 'KazaMaza', 'Friday dinner — Lebanese meze');
 pin(45.5018, -73.5599, '#FF8C00', 'Restaurant Monarque', 'Birthday dinner — Sunday');
 pin(45.5163, -73.5776, '#FF8C00', "Schwartz's Deli", 'Iconic smoked meat sandwiches');
-pin(45.5252, -73.5753, '#FF8C00', 'Ma Poule Mouillée', 'Portuguese grill (closed Mon)');
+pin(45.5252, -73.5753, '#FF8C00', 'Ma Poule Mouillée', 'Portuguese grill — closed Mon');
 pin(45.5078, -73.5596, '#FF8C00', 'Nouilles de Lan Zhou', 'Housemade noodles');
 pin(45.5406, -73.5993, '#FF8C00', 'La Belle Tonki', 'Cambodian & Vietnamese fusion');
-pin(45.5236, -73.5829, '#FF8C00', 'Sammi & Soupe', 'Soup dumplings & noodles');
 pin(45.4795, -73.5808, '#FF8C00', 'Sumac', 'Near Marché Atwater');
 pin(45.4796, -73.5768, '#FF8C00', 'Satay Brothers', 'Near Marché Atwater');
 pin(45.4809, -73.5788, '#FF8C00', 'Greenspot Smoked Meat', 'Near Marché Atwater');
-pin(45.5145, -73.5718, '#FF8C00', 'Nemo', 'Vietnamese — Sunday dinner option');
+pin(45.5153, -73.5838, '#FF8C00', 'Petit Poisson Dumpling', 'Dumplings on Saint-Laurent');
+pin(45.5282, -73.5822, '#FF8C00', 'Chez Claudette', 'Poutine diner — open till midnight');
+pin(45.5265, -73.5647, '#FF8C00', 'La Banquise', 'Poutine — open 24 hrs');
+pin(45.5181, -73.5815, '#FF8C00', 'Patati Patata', 'Poutine & fries — open till 2 AM');
+pin(45.4926, -73.6305, '#FF8C00', 'Orange Julep', 'Late-night fast food poutine');
+pin(45.5350, -73.7180, '#FF8C00', 'Paulo & Suzanne', 'Late-night poutine — Gouin O');
+pin(45.5224, -73.5841, '#FF8C00', "Else's", 'Monday dinner — bar & bistro on Roy');
+// Parks / Activities
 pin(45.5035, -73.5871, '#00CC66', 'Mount Royal', 'Kondiaronk Belvedere hike');
 pin(45.5263, -73.5690, '#00CC66', 'Parc La Fontaine', 'Sunday picnic');
 pin(45.4785, -73.5760, '#00CC66', 'Marché Atwater', 'Monday lunch by the canal');
 pin(45.5042, -73.5530, '#00CC66', 'Lachine Canal', 'Monday bike ride — Old Port end');
+// Cafés / Breakfast
 pin(45.5233, -73.5836, '#00BFFF', 'Kahwa Café', 'Coffee & pita — next to Airbnb');
 pin(45.5284, -73.5790, '#00BFFF', 'St-Viateur Bagel', 'Iconic wood-oven bagels');
 pin(45.5358, -73.5813, '#00BFFF', 'Bêden Càphê', 'Vietnamese café');
 pin(45.5186, -73.5809, '#00BFFF', 'Tordu Cafe', 'Matcha & ice cream');
+pin(45.5283, -73.5712, '#00BFFF', 'Byblos Le Petit Cafe', 'Persian coffeehouse & lunch — Laurier E');
+pin(45.5213, -73.5816, '#00BFFF', 'Café Chez Téta', 'Lebanese café — closed Mon & Tue');
+// Bars
 pin(45.5189, -73.5840, '#A855F7', 'Le Bar Darling', 'Beer, cocktails — till 3 AM');
 pin(45.5235, -73.5832, '#A855F7', 'Bily Kun', 'Jazz cocktail lounge — till 3 AM');
 pin(45.5172, -73.5790, '#A855F7', 'Bar Suzanne', 'Cocktails + tapas — till 2 AM');
-pin(45.5269, -73.6134, '#A855F7', 'Taverne Atlantic', 'Airy bar — till 1 AM');
 pin(45.5232, -73.5928, '#A855F7', 'Siboire Saint-Laurent', 'Brewpub — till 1 AM');
-pin(45.5131, -73.5704, '#A855F7', 'Bootlegger', 'Speakeasy — till 3 AM');
 pin(45.4983, -73.5783, '#A855F7', 'Bar K Karaoke', 'Private karaoke rooms — Sunday night');
+pin(45.5378, -73.5886, '#A855F7', 'Chez Ernest', 'Bar w/ charcuterie — till 3 AM');
+pin(45.5330, -73.5870, '#A855F7', 'Bar Mamie', 'Laid back bar w/ food');
+pin(45.5382, -73.5894, '#A855F7', 'Mellön', 'Microbrewery — till 1 AM');
+pin(45.5340, -73.5953, '#A855F7', 'WILLS', 'Microbrewery — till midnight');
+pin(45.5249, -73.5932, '#A855F7', 'Casa Del Popolo', 'Live music bar — till 3 AM');
+pin(45.5378, -73.5880, '#A855F7', 'Le Système', 'Bar/club — great cocktails & music');
+pin(45.5219, -73.5936, '#A855F7', 'Datcha', 'Electronic club — techno/house');
+pin(45.5119, -73.5591, '#A855F7', 'Newspeak', 'Nightclub — good lights & sound system');
+// Grocery
 pin(45.5205, -73.5987, '#FF8C00', 'Supermarché PA', 'Friday grocery run');
 
 setTimeout(() => leafletMap.invalidateSize(), 200);
